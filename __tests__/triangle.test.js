@@ -28,7 +28,9 @@ describe("Triangle", () => {
     const equiTriangle = new Triangle(5, 5, 5);
     expect(equiTriangle.checkType()).toEqual("equilateral triangle");
   });
+});
 
+describe("validation", () => {
   test("should correctly determine the value passed is numeric", () => {
     const isNumber = isNumeric("5");
     expect(isNumber).toEqual(true);
@@ -37,5 +39,20 @@ describe("Triangle", () => {
   test("should correctly determine the value passed is not numeric", () => {
     const isNumber = isNumeric("five");
     expect(isNumber).toEqual(false);
+  });
+
+  test("should correctly determine the value passed is an array", () => {
+    const isArray = new Triangle([5], 5, 4);
+    expect(isArray.checkType()).toEqual("One or more values are invalid");
+  });
+
+  test("should correctly determine the value passed is a non numeric string", () => {
+    const isArray = new Triangle("five", 5, 4);
+    expect(isArray.checkType()).toEqual("One or more values are invalid");
+  });
+
+  test("should correctly determine the value passed is a negative number", () => {
+    const isArray = new Triangle(5, -5, 4);
+    expect(isArray.checkType()).toEqual("One or more values are invalid");
   });
 });
