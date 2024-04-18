@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import Triangle from "./../src/triangle.js";
+import { Triangle, isNumeric } from "./../src/triangle.js";
 
 describe("Triangle", () => {
   test("should correctly create a triangle with three lengths", () => {
@@ -27,5 +27,15 @@ describe("Triangle", () => {
   test("should correctly determine whether three lengths make an equilateral triangle", () => {
     const equiTriangle = new Triangle(5, 5, 5);
     expect(equiTriangle.checkType()).toEqual("equilateral triangle");
+  });
+
+  test("should correctly determine the value passed is numeric", () => {
+    const isNumber = isNumeric("5");
+    expect(isNumber).toEqual(true);
+  });
+
+  test("should correctly determine the value passed is not numeric", () => {
+    const isNumber = isNumeric("five");
+    expect(isNumber).toEqual(false);
   });
 });
